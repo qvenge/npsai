@@ -1,0 +1,115 @@
+.root {
+  display: flex;
+  gap: ds.number('paddings & gaps/XXS');
+
+  color: ds.color('text/primary');
+}
+
+.divider {
+  width: 1px;
+  flex-shrink: 0;
+  align-self: stretch;
+
+  background: ds.color('border/primary');
+}
+
+.card {
+  display: flex;
+  padding: ds.number('paddings & gaps/M');
+  align-items: center;
+  gap: ds.number('paddings & gaps/M');
+  min-width: 150px;
+
+  background: ds.color('background/accent');
+  border-radius: ds.number('radius/L')
+}
+
+.cardMain {
+  display: flex;
+  min-width: 64px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.cardTitle {
+  position: relative;
+  @include ds.typo('body/b4/medium');
+
+  display: flex;
+  align-items: center;
+  gap: ds.number('paddings & gaps/3XS');
+  align-self: stretch;
+}
+
+.cardValue {
+  @include ds.typo('header/h2/bold');
+
+  display: flex;
+  align-items: baseline;
+  gap: ds.number('paddings & gaps/XXS');
+}
+
+.cardValueChange {
+  @include ds.typo('body/b4/semibold');
+
+  &Positive {
+    color: ds.color('text/success');
+  }
+
+  &Negative {
+    color: ds.color('text/error/primary');
+  }
+}
+
+.cardAdditional {
+  min-width: 196px;
+
+  display: flex;
+  flex-direction: column;
+  gap: ds.number('paddings & gaps/XXS');
+}
+
+.cardItem {
+  display: flex;
+  align-items: center;
+  gap: ds.number('paddings & gaps/XXS');
+
+  &Title {
+    @include ds.typo('body/b4/regular');
+    flex-grow: 1;
+  }
+
+  &Value {
+    @include ds.typo('body/b4/semibold');
+  }
+}
+
+.cardItemIcon {
+  width: 20px;
+  height: 20px;
+
+  &Positive {
+    color: ds.color('graphic/success');
+  }
+
+  &Neutral {
+    color: ds.color('graphic/warning');
+  }
+
+  &Negative {
+    color: ds.color('graphic/error/primary');
+  }
+
+  &Spam {
+    color: ds.color('graphic/accent');
+  }
+}
+
+.npsDropdown {
+  position: absolute;
+  top: 100%;
+  left: calc(100% - 20px);
+}

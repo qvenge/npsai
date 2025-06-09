@@ -1,0 +1,45 @@
+.root {
+  @include ds.typo('body/b4/medium');
+  color: ds.color('text/accent');
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: ds.number('paddings & gaps/XXS');
+  flex: 1 0 0;
+}
+
+.playIcon {
+  flex-shrink: 0;
+}
+
+
+.text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  cursor: pointer;
+  text-align: left;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.modal {
+  display: flex;
+  width: 640px;
+  max-height: 240px;
+  padding: var(--paddings-gaps-xl, 28px);
+  padding-right: 92px;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto;
+
+  border-radius: var(--radius-L, 16px);
+  background: var(--background-primary, #FFF);
+}

@@ -1,0 +1,77 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: ds.number('paddings & gaps/XL');
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.card {
+  display: flex;
+  max-width: 640px;
+  padding: ds.number('paddings & gaps/XL');
+
+  flex-direction: column;
+  align-items: flex-start;
+  gap: ds.number('paddings & gaps/XL');
+
+  align-self: stretch;
+
+  border-radius: ds.number('radius/L');
+  background: ds.color('background/primary');
+
+  /* Shadow/M */
+  box-shadow: ds.effect('Shadow/M');
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: ds.number('paddings & gaps/3XS');
+  align-self: stretch;
+}
+
+.cardBody {
+  display: flex;
+  align-items: flex-start;
+  gap: ds.number('paddings & gaps/XXS');
+  align-self: stretch;
+}
+
+.cardDesc {
+  @include ds.typo('body/b4/medium');
+  color: ds.color('text/secondary');
+}
+
+.cardTitle {
+  @include ds.typo('header/h4/bold');
+  color: ds.color('text/primary');
+}
+
+.cardInfo {
+  display: flex;
+  padding: ds.number('paddings & gaps/M');
+  flex-direction: column;
+  align-items: flex-start;
+  gap: ds.number('paddings & gaps/XS');
+  flex: 1 0 0;
+
+  border-radius: ds.number('radius/M');
+  background: ds.color('background/accent');
+}
+
+.cardInfoLabel {
+  @include ds.typo('body/b4/medium');
+  color: ds.color('text/primary');
+}
+
+.cardInfoValue {
+  @include ds.typo('body/b1/semibold');
+  color: ds.color('text/primary');
+
+  &Total {
+    color: ds.color('text/secondary');
+  }
+}

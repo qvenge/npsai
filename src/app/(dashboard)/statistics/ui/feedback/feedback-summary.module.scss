@@ -1,0 +1,47 @@
+.card {
+  width: 600px;
+  padding: ds.number('paddings & gaps/M');
+
+  display: flex;
+  flex-direction: column;
+  gap: ds.number('paddings & gaps/XXS');
+
+  border-radius: ds.number('radius/M');
+  background: ds.color('background/accent');
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: ds.number('paddings & gaps/XS');
+}
+
+.author {
+  @include ds.typo('body/b3/semibold');
+  color: ds.color('text/secondary');
+}
+
+.content {
+  @include ds.typo('body/b3/regular');
+
+  overflow: hidden;
+  max-height: 120px;
+
+  color: ds.color('text/primary');
+}
+
+.expandBtnContent {
+  display: flex;
+  align-items: center;
+  gap: ds.number('paddings & gaps/3XS');
+}
+
+.cardExpanded {
+  .content {
+    max-height: unset;
+  }
+
+  .expandBtn {
+    display: none;
+  }
+}

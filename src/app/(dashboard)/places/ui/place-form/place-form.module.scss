@@ -1,0 +1,93 @@
+.root {
+  display: flex;
+  width: 480px;
+  padding: ds.number('paddings & gaps/3XL') ds.number('paddings & gaps/XL') ds.number('paddings & gaps/XL');
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  gap: ds.number('paddings & gaps/3XL');
+
+  border-radius: ds.number('radius/L');
+  background: ds.color('background/primary');
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: ds.number('paddings & gaps/S');
+  align-self: stretch;
+}
+
+.image {
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.imagePlaceholder {
+  @include ds.typo('body/b2/semibold');
+
+  display: flex;
+  width: 56px;
+  height: 56px;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: ds.number('radius/round');
+  background: ds.color('graphic/warning');
+
+  color: ds.color('text/alternative/primary');
+}
+
+.buttons {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ds.number('paddings & gaps/S');
+}
+
+.button {
+  align-self: stretch;
+}
+
+.deleteModal {
+  display: flex;
+  width: 480px;
+  padding: ds.number('paddings & gaps/XL');
+  flex-direction: column;
+  align-items: center;
+  gap: ds.number('paddings & gaps/3XL');
+
+  border-radius: ds.number('radius/M');
+  background: ds.color('background/primary');
+
+  &Info {
+    display: flex;
+    padding-right: ds.number('paddings & gaps/3XL');
+    flex-direction: column;
+    align-items: flex-start;
+    gap: ds.number('paddings & gaps/M');
+    align-self: stretch;
+  }
+
+  &Title {
+    @include ds.typo('header/h4/semibold');
+    color: ds.color('text/primary');
+  }
+
+  &Text {
+    @include ds.typo('body/b3/regular');
+    color: ds.color('text/primary');
+  }
+
+  &Buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: ds.number('paddings & gaps/XS');
+    align-self: stretch;
+  }
+}

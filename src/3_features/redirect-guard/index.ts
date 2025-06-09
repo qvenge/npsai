@@ -1,0 +1,1 @@
+export { RedirectGuard } from './redirect-guard';

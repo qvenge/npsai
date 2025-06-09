@@ -1,0 +1,41 @@
+{
+    "result": {
+        "id": "test_org",
+        "email": "mail1@mail.ru",
+        "info": {
+            "addres": "100001, г. Москва, ул. Примерная, д. 1/2",
+            "INN": "1234567890",
+            "KPP": "123456789",
+            "OGRN": "1122334455667788"
+        },
+        "places": [
+            {
+                "id": "test_place",
+                "name": "bar1",
+                "type": "bar",
+                "notification_enable": true,
+                "notification_recipient": "@someone",
+                "pic_url": "static/test_org/b2b8dcb0-55ee-4f28-9be4-9f81ff869242/pic1.png",
+                "qr_url": "static/test_org/b2b8dcb0-55ee-4f28-9be4-9f81ff869242/placeQR.svg"
+            },
+            {
+                "id": "2",
+                "name": "hotel1",
+                "type": "hotel",
+                "notification_enable": false,
+                "notification_recipient": "",
+                "pic_url": "static/test_org/b2b8dcb0-55ee-4f28-9be4-9f81ff869242/pic1.png",
+                "qr_url": "static/test_org/b2b8dcb0-55ee-4f28-9be4-9f81ff869242/placeQR.svg"
+            },
+            {
+                "id": "3",
+                "name": "spa1",
+                "type": "spa",
+                "notification_enable": true,
+                "notification_recipient": "@someone",
+                "pic_url": "static/test_org/b2b8dcb0-55ee-4f28-9be4-9f81ff869242/pic1.png",
+                "qr_url": "static/test_org/b2b8dcb0-55ee-4f28-9be4-9f81ff869242/placeQR.svg"
+            }
+        ]
+    }
+}

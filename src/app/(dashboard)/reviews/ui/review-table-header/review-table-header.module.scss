@@ -1,0 +1,35 @@
+.tHead {
+  @include ds.typo('body/b4/semibold');
+
+  display: grid;
+  grid-template-columns: 1fr 180px 150px 110px 240px;
+  background: #eee;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  background: ds.color('background/accent');
+  color: ds.color('text/primary');
+  white-space: nowrap;
+  text-align: left;
+}
+
+.thCell {
+  padding: ds.number('paddings & gaps/M');
+  display: flex;
+  align-items: center;
+  gap: ds.number('paddings & gaps/XXS');
+  // border-bottom: 1px solid ds.color('border/primary');
+}
+
+.tdIcon {
+  flex-shrink: 0;
+}
+
+.sortIcon {
+  color: ds.color('graphic/secondary');
+
+  &Active {
+    color: ds.color('graphic/accent');
+  }
+}

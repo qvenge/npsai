@@ -1,0 +1,75 @@
+.react-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: ds.number('paddings & gaps/S');
+
+  width: 240px;
+
+
+  &__navigation {
+    display: flex;
+  }
+
+  &__month-view__weekdays__weekday {
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__navigation__arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    background: ds.color('background/primary');
+    border: none;
+    color: ds.color('text/primary');
+  }
+
+  &__navigation__arrow:disabled {
+    color: ds.color('text/secondary');
+    cursor: default;
+  }
+
+  &__navigation__arrow:not(:disabled):hover {
+    background: ds.color('background/secondary');
+    cursor: pointer;
+  }
+
+  &__navigation__label {
+    @include ds.typo('body/b3/medium');
+
+    flex-grow: 1;
+    background: ds.color('background/primary');
+    border: none;
+    color: ds.color('text/primary');
+  }
+
+  &__tile {
+    // width: 4px;
+    // height: 24px;
+    aspect-ratio: 1;
+    background: ds.color('background/primary');
+    border: none;
+    color: ds.color('text/primary')
+  }
+
+  &__tile:not(:disabled):hover {
+    background: ds.color('background/secondary');
+    cursor: pointer;
+  }
+
+  &__tile:disabled {
+    color: ds.color('text/secondary');
+    cursor: default;
+  }
+
+  &__tile--range,
+  &__tile--rangeEnd,
+  &__tile--rangeStart {
+    background: ds.color('background/accent');
+    color: ds.color('text/primary');
+  }
+}

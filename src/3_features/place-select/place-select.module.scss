@@ -1,0 +1,104 @@
+.select {
+  @include ds.typo('body/b3/regular'); // @include body-b3-regular;
+
+  position: relative;
+}
+
+.selectedContent {
+  height: 48px;
+  width: 240px;
+  padding: 0 36px 0 16px;
+
+  border-radius: var(--radius-M, 12px);
+  border: 1px solid #{ds.color('border/primary')};
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.dropdown {
+  display: none;
+
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 999;
+
+  min-width: 240px;
+  max-width: 360px;
+  padding: ds.number('paddings & gaps/XXS');
+
+  flex-direction: column;
+  gap: ds.number('paddings & gaps/3XS');
+
+  border-radius: ds.number('radius/M');
+  background: ds.color('background/primary');
+  box-shadow: ds.effect('Shadow/L');
+}
+
+.selectOpen .dropdown {
+  display: flex;
+}
+
+.option {
+  padding: 4px 8px;
+  border-radius: ds.number('radius/S');
+
+  &Selected {
+    background: ds.color('background/accent');
+  }
+}
+
+.selectedContent,
+.optionContent {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+  gap: ds.number('paddings & gaps/XXS');
+
+  color: ds.color('text/primary');
+  cursor: pointer;
+}
+
+.selectedContentIcon,
+.optionIcon {
+  @include ds.typo('body/b4/semibold');
+
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+
+  background:ds.color('graphic/warning');
+  color: ds.color('text/alternative/primary');
+}
+
+.caret {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+}
+
+
+/* .select {
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+
+  border-radius: var(--radius-M, 12px);
+  border: 1px solid var(--border-primary, #E9ECEF);
+} */

@@ -1,0 +1,22 @@
+// 'positive' | 'neutral' | 'negative' | 'spam'
+
+.iconPositive {
+  color: ds.color('graphic/success');
+}
+
+.iconNeutral {
+ color: ds.color('graphic/warning');
+}
+
+.iconAngry,
+.iconNegative {
+  color: ds.color('graphic/error/primary');
+}
+
+.iconSpam {
+  color: ds.color('graphic/secondary');
+}
+
+.iconError {
+  color: ds.color('graphic/error/secondary');
+}

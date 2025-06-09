@@ -1,0 +1,19 @@
+
+.timeline {
+  width: 284px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: ds.number('paddings & gaps/3XS');
+}
+
+.time {
+  @include ds.typo('body/b4/semibold');
+  color: ds.color('text/primary');  
+}
+
+
+/* Слайдер */
+.slider {
+  
+}

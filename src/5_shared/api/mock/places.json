@@ -1,0 +1,16 @@
+{
+    "result": [
+        {
+            "id": "test_place",
+            "name": "bar1"
+        },
+        {
+            "id": "2",
+            "name": "hotel1"
+        },
+        {
+            "id": "3",
+            "name": "spa1"
+        }
+    ]
+}

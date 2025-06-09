@@ -1,0 +1,39 @@
+
+.root {
+  position: relative;
+}
+
+.sliderWrapper {
+  position: absolute;
+  top: -6px;
+  left: calc(50% - 11px);
+  transform: rotate(-90deg);
+  transform-origin: 0% 0%;
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 91px;
+  height: 22px;
+
+  border-radius: ds.number('radius/round');
+  background: ds.color('background/primary');
+  box-shadow: ds.effect('Shadow/L');
+}
+
+.slider {
+  width: 75px;
+}
+
+.button {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 100px;
+}

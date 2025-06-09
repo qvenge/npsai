@@ -1,0 +1,201 @@
+.button {
+  position: relative;
+}
+
+.loader {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loading {
+  pointer-events: none;
+
+  & .loader {
+    display: block;
+  }
+
+  & .content {
+    opacity: 0;
+  }
+}
+
+.content {
+  @include ds.typo('body/b3/medium');
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ds.number('paddings & gaps/XXS');
+}
+
+.streched {
+  width: 100%;
+}
+
+.buttonSize {
+  &L  {
+    padding: ds.number('paddings & gaps/XS') ds.number('paddings & gaps/M');
+    border-radius: ds.number('radius/M');
+  }
+
+  &M  {
+    padding: ds.number('paddings & gaps/XXS') ds.number('paddings & gaps/S');
+    border-radius: ds.number('radius/M');
+  }
+
+  &S  {
+    @include ds.typo('body/b4/medium');
+
+    padding: 6px ds.number('paddings & gaps/XS');
+    gap: ds.number('paddings & gaps/3XS');
+    border-radius: ds.number('radius/S');
+  }
+}
+
+.buttonType {
+  &Primary {
+    background: ds.color('background/button-main/default');
+    color: ds.color('text/alternative/primary');
+
+    & .icon {
+      color: ds.color('graphic/alternative/primary');
+    }
+
+    &:hover {
+      background: ds.color('background/button-main/hover');
+    }
+
+    &:active {
+      background: ds.color('background/button-main/pressed');
+    }
+
+    &[disabled] {
+      background: ds.color('background/button-main/disabled');
+      color: ds.color('text/alternative/secondary');
+
+      & .icon {
+        color: ds.color('graphic/brand/secondary');
+      }
+    }
+  }
+
+  &Secondary {
+    background: ds.color('background/button-secondary/default');
+    color: ds.color('text/brand/primary');
+
+    & .icon {
+      color: ds.color('graphic/alternative/primary');
+    }
+
+    &:hover {
+      background: ds.color('background/button-secondary/hover');
+    }
+
+    &:active {
+      background: ds.color('background/button-secondary/pressed');
+    }
+
+    &[disabled] {
+      background: ds.color('background/button-secondary/disabled');
+      color: ds.color('text/brand/secondary');
+
+      & .icon {
+        color: ds.color('graphic/brand/secondary');
+      }
+    }
+  }
+
+  &Tertiary {
+    background: ds.color('background/button-tertiary/default');
+    color: ds.color('text/primary');
+
+    & .icon {
+      color: ds.color('graphic/primary');
+    }
+
+    &:hover {
+      background: ds.color('background/button-tertiary/hover');
+    }
+
+    &:active {
+      background: ds.color('background/button-tertiary/pressed');
+    }
+
+    &[disabled] {
+      background: ds.color('background/button-tertiary/disabled');
+      color: ds.color('text/secondary');
+
+      & .icon {
+        color: ds.color('graphic/secondary');
+      }
+    }
+  }
+
+  &Negative {
+    background: ds.color('background/button-red/default');
+    color: ds.color('text/error/primary');
+
+    & .icon {
+      color: ds.color('graphic/error/primary');
+    }
+
+    &:hover {
+      background: ds.color('background/button-red/hover');
+    }
+
+    &:active {
+      background: ds.color('background/button-red/pressed');
+    }
+
+    &[disabled] {
+      background: ds.color('background/button-red/disabled');
+      color: ds.color('text/error/tertiary');
+
+      & .icon {
+        color: ds.color('graphic/error/tertiary');
+      }
+    }
+  }
+
+  &Elevated {
+    background: ds.color('background/button-alternative/default');
+    color: ds.color('text/primary');
+
+    & .icon {
+      color: ds.color('graphic/primary');
+    }
+
+    &:hover {
+      background: ds.color('background/button-alternative/hover');
+    }
+
+    &:active {
+      background: ds.color('background/button-alternative/pressed');
+    }
+
+    &[disabled] {
+      background: ds.color('background/button-alternative/disabled');
+      color: ds.color('text/secondary');
+
+      & .icon {
+        color: ds.color('graphic/secondary');
+      }
+    }
+  }
+}
+
+.icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

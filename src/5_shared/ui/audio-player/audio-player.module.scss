@@ -1,0 +1,56 @@
+.audioPlayer {
+  width: 100%;
+  max-width: 480px;
+  padding: ds.number('paddings & gaps/M');
+
+  background: ds.color('background/primary');
+  border-radius: ds.number('radius/L');
+  box-shadow: ds.effect('Shadow/L');
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: ds.number('paddings & gaps/XS');
+  color: ds.color('graphic/accent');
+}
+
+.playButton {
+  
+}
+
+.timeline {
+  
+}
+
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: ds.number('paddings & gaps/XXS');
+}
+
+.volumeButton,
+.closeButton {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 100px;
+}
+
+.actionDivider {
+  width: 1px;
+  height: 20px;
+
+  background-color: ds.color('border/primary');
+  border-radius: 10px;
+}
+
+.closeButton {
+  color: ds.color('graphic/secondary');
+}
+

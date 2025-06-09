@@ -1,0 +1,93 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.title {
+  @include ds.typo('header/h2/bold');
+}
+
+.checkboxes {
+  display: flex;
+  gap: 28px;
+}
+
+.checkbox {
+  &Positive {
+    --check-bg-color: #{ds.color('graphic/success')};
+  }
+
+  &Neutral {
+    --check-bg-color: #{ds.color('graphic/warning')};
+  }
+
+  &Negative {
+    --check-bg-color: #{ds.color('graphic/error/primary')};
+  }
+
+  &Spam {
+    --check-bg-color: #{ds.color('graphic/accent')};
+  }
+}
+
+.tickLabel {
+  @include ds.typo('body/b4/semibold');
+  fill: ds.color('text/secondary');
+  color: ds.color('text/secondary');
+}
+
+.tooltip {
+  width: 240px;
+  height: auto;
+  padding: ds.number('paddings & gaps/XS');
+
+  display: flex;
+  flex-direction: column;
+  gap: ds.number('paddings & gaps/XS');
+
+  background: ds.color('overlay/primary');
+  border-radius: ds.number('radius/M');
+
+  &Label {
+    @include ds.typo('body/b4/semibold');
+    color: ds.color('text/secondary');
+  }
+
+  &Items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: ds.number('paddings & gaps/XXS');
+    align-self: stretch;
+  }
+
+  &Item {
+    position: relative;
+    padding-left: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-self: stretch;
+
+    @include ds.typo('body/b4/medium');
+    color: ds.color('text/alternative/primary');
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--tooltip-item-color);
+    }
+  }
+}
+
+.xAxis {
+  padding-left: 60px;
+  display: flex;
+  justify-content: space-between;
+}

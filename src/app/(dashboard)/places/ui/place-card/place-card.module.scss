@@ -1,0 +1,176 @@
+.root {
+  display: flex;
+  width: 640px;
+  padding: ds.number('paddings & gaps/XL');
+  flex-direction: column;
+  align-items: flex-start;
+  gap: ds.number('paddings & gaps/XL');
+
+  border-radius: ds.number('radius/L');
+  background: ds.color('background/primary');
+
+  box-shadow: ds.effect('Shadow/M');
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: ds.number('paddings & gaps/M');
+  align-self: stretch;
+}
+
+.image {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  @include ds.typo('body/b2/semibold');
+
+  display: flex;
+  width: 56px;
+  height: 56px;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: ds.number('radius/round');
+  background: ds.color('graphic/warning');
+
+  color: ds.color('text/alternative/primary');
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: ds.number('paddings & gaps/3XS');
+  align-self: stretch;
+  flex-grow: 1;
+}
+
+.infoHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: ds.number('paddings & gaps/3XS');
+  align-self: stretch;
+}
+
+.placeType {
+  @include ds.typo('body/b3/medium');
+
+  display: flex;
+  align-items: center;
+  gap: ds.number('paddings & gaps/XXS');
+  align-self: stretch;
+
+  color: ds.color('text/secondary');
+}
+
+.controls {
+  display: flex;
+  align-items: flex-start;
+  gap: ds.number('paddings & gaps/M');
+  align-self: stretch;
+}
+
+.placeName {
+  @include ds.typo('header/h4/bold');
+  color: ds.color('text/primary');
+}
+
+.body {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+.stats {
+  display: flex;
+  align-items: flex-start;
+  gap: ds.number('paddings & gaps/XXS');
+  align-self: stretch;
+}
+
+.stat {
+  display: flex;
+  min-width: 132px;
+  padding: ds.number('paddings & gaps/M');
+  flex-direction: column;
+  align-items: flex-start;
+  gap: ds.number('paddings & gaps/XS');
+
+  border-radius: ds.number('radius/M');
+  background: ds.color('background/accent');
+}
+
+.statHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.statLabel {
+  @include ds.typo('body/b4/medium');
+  color: ds.color('text/primary');
+}
+
+.statIcon {
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+  color: ds.color('graphic/secondary');
+}
+
+.statValue {
+  @include ds.typo('header/h4/bold');
+  color: ds.color('text/primary');
+}
+
+.qrModal {
+  display: flex;
+  width: 400px;
+  padding: ds.number('paddings & gaps/3XL') ds.number('paddings & gaps/XL') ds.number('paddings & gaps/XL');
+  flex-direction: column;
+  align-items: center;
+  gap: ds.number('paddings & gaps/3XL');
+
+  border-radius: ds.number('radius/L');
+  background: ds.color('background/primary');
+
+  &ImageInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: ds.number('paddings & gaps/M');
+    align-self: stretch;
+  }
+
+  &Info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: ds.number('paddings & gaps/XXS')
+  }
+
+  &Name {
+    @include ds.typo('body/b3/semibold');
+    color: ds.color('text/secondary');
+  }
+
+  &Title {
+    @include ds.typo('header/h4/bold');
+    color: ds.color('text/primary');
+  }
+
+  &Controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: ds.number('paddings & gaps/S');
+    align-self: stretch;
+  }
+}
