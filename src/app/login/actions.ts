@@ -30,7 +30,7 @@ export async function login(_: unknown, formData: FormData) {
   } catch(err: any) {
     return {
       errors: {
-        detail: 'Неверные логин или пароль'
+        detail: err.cause?.err?.message ?? 'Неизвестная ошибка'
       }
     }
   }
