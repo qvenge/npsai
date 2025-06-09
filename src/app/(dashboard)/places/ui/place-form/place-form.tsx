@@ -56,7 +56,7 @@ export function PlaceForm({data, confirmDelete}: PlaceFormProps) {
       {data ? (
         data.image_url ? (
           <Image
-            src={`${HOST}/${data.image_url}`}
+            src={`/api/http-proxy?url=${HOST}/${data.image_url}`}
             width={80}
             height={80}
             alt={data.name}

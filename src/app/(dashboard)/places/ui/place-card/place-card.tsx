@@ -63,7 +63,7 @@ export function PlaceCard({data: dataInit}: PlaceCardProps) {
     typeLabel: placeTypeLabels[dataInit.ptype] ?? dataInit.ptype,
   }), [dataInit]);
 
-  const qrUrl = `${HOST}/${data.qr_url}`;
+  const qrUrl = `/api/http-proxy?url=${HOST}/${data.qr_url}`;
 
   const handleQrUrlCopy = async () => {
     try {
@@ -77,7 +77,7 @@ export function PlaceCard({data: dataInit}: PlaceCardProps) {
   };
 
   function downloadSvg() {
-    fetch('/api/proxy-static?url=' + encodeURIComponent(qrUrl))
+    fetch('/api/download?url=' + encodeURIComponent(qrUrl))
       .then(res => res.blob())
       .then(blob => {
         const url = URL.createObjectURL(blob);
@@ -96,7 +96,7 @@ export function PlaceCard({data: dataInit}: PlaceCardProps) {
       <div className={styles.header}>
         {data.image_url ? (
           <Image
-            src={`${HOST}/${data.image_url}`}
+            src={`/api/http-proxy?url=${HOST}/${data.image_url}`}
             width={56}
             height={56}
             alt={data.name}

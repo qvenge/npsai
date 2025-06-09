@@ -10,12 +10,16 @@ const nextConfig: NextConfig = {
     `
   },
   images: {
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
+        protocol: 'https',
+        hostname: '**',
+      },
+      {
         protocol: 'http',
-        hostname: '194.226.121.220',
-        port: '8020',
-        pathname: '/**',
+        hostname: '**',
       },
     ],
   },
