@@ -90,6 +90,10 @@
   transform: translateY(-50%);
 }
 
+.selectedLabel {
+  @include utils.ellipsis(1);
+}
+
 
 /* .select {
   height: 48px;

@@ -10,7 +10,14 @@ const nextConfig: NextConfig = {
     `
   },
   images: {
-    remotePatterns: [new URL(`${HOST}/**`)],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: '194.226.121.220',
+        port: '8020',
+        pathname: '/**',
+      },
+    ],
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
