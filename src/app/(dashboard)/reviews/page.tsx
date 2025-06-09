@@ -10,8 +10,6 @@ export default async function Reviews({searchParams: _searchParams}: {
 }) {
   const searchParams = await _searchParams ?? {};
 
-  await new Promise(() => {});
-
   return (
     <div className={styles.pageContent}>
       <RedirectGuard searchParams={searchParams} pathname='/reviews' />
