@@ -11,7 +11,9 @@ export async function GET(req: NextRequest) {
     order_by: searchParams.get('order_by'),
     descending: searchParams.get('descending') === 'true',
     page: Number(searchParams.get('page') ?? 1),
-    size: Number(searchParams.get('size') ?? 10)
+    size: Number(searchParams.get('size') ?? 10),
+    review_type_filter: searchParams.get('review_type_filter'),
+    category_filter: searchParams.get('category_filter'),
   }));
 
   const data = await getReviewList(query);

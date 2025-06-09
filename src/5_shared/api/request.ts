@@ -1,4 +1,4 @@
-import { HOST } from './const';
+import { API_HOST } from './const';
 import mocks from './mock';
 
 type ContentType = 'application/json' | 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain';
@@ -54,7 +54,7 @@ export async function requestApi(url: string, {
     }
   }
 
-  const normalizedUrl = `${url.startsWith('/') ? `${HOST}/npsai${url}` : url}${query.toString() ? `?${query.toString()}` : ''}`;
+  const normalizedUrl = `${url.startsWith('/') ? `${API_HOST}/npsai${url}` : url}${query.toString() ? `?${query.toString()}` : ''}`;
 
   if (mockEnabled) {
     const parsed = new URL(normalizedUrl);

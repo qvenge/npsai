@@ -1,6 +1,6 @@
 import type { NextConfig } from 'next';
 import path from 'node:path';
-import { HOST } from '@/shared/api/const';
+import { API_HOST } from '@/shared/api/const';
 
 const nextConfig: NextConfig = {
   sassOptions: {

@@ -14,7 +14,7 @@ import { placeTypeLabels } from '../../const';
 
 import { PlaceForm } from '../place-form';
 import styles from './place-card.module.scss';
-import { HOST } from '@/shared/api/const';
+import { API_HOST } from '@/shared/api/const';
 
 interface Stats {
   reviewCount: number;
@@ -63,11 +63,12 @@ export function PlaceCard({data: dataInit}: PlaceCardProps) {
     typeLabel: placeTypeLabels[dataInit.ptype] ?? dataInit.ptype,
   }), [dataInit]);
 
-  const qrUrl = `/api/http-proxy?url=${HOST}/${data.qr_url}`;
+  const pureQrUrl = `${API_HOST}/${data.qr_url}`;
+  const qrUrl = `/api/http-proxy?url=${pureQrUrl}`;
 
   const handleQrUrlCopy = async () => {
     try {
-      await navigator.clipboard.writeText(qrUrl);
+      await navigator.clipboard.writeText(pureQrUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -77,7 +78,7 @@ export function PlaceCard({data: dataInit}: PlaceCardProps) {
   };
 
   function downloadSvg() {
-    fetch('/api/download?url=' + encodeURIComponent(qrUrl))
+    fetch('/api/download?url=' + encodeURIComponent(pureQrUrl))
       .then(res => res.blob())
       .then(blob => {
         const url = URL.createObjectURL(blob);
@@ -96,7 +97,7 @@ export function PlaceCard({data: dataInit}: PlaceCardProps) {
       <div className={styles.header}>
         {data.image_url ? (
           <Image
-            src={`/api/http-proxy?url=${HOST}/${data.image_url}`}
+            src={`/api/http-proxy?url=${API_HOST}/${data.image_url}`}
             width={56}
             height={56}
             alt={data.name}
@@ -114,7 +115,7 @@ export function PlaceCard({data: dataInit}: PlaceCardProps) {
             </div>
             <div className={styles.controls}>
               <Suspense>
-                <LinkWithParams href={`/statistics`}>
+                <LinkWithParams href={`/statistics`} params={{place_id: data.id}}>
                   <TextButton
                     className={styles.control}
                     type='primary'
@@ -153,7 +154,7 @@ export function PlaceCard({data: dataInit}: PlaceCardProps) {
         {isPending || !stats ? <InfoSkeleton /> : (
           <div className={styles.stats}>
             <Suspense>
-              <LinkWithParams href={`/reviews`}>
+              <LinkWithParams href={`/reviews`} params={{place_id: data.id}}>
                 <div className={styles.stat}>
                   <div className={styles.statHeader}>
                     <div className={styles.statLabel}>Отзывы</div>

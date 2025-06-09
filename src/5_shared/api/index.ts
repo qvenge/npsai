@@ -7,5 +7,5 @@ export { useRemoteData } from './use-remote-data';
 export { useActualRemoteData } from './use-actual-remote-data';
 export { useReviewList } from './use-review-list';
 export { useSpecificQuery } from './use-specific-query';
-export { HOST } from './const';
+export { API_HOST } from './const';
 export * from './review';

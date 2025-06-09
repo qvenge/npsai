@@ -22,7 +22,7 @@ import { placeTypeLabels } from '../../const';
 
 import { addPlaceAction, editPlaceAction, deletePlaceAction } from './action';
 import styles from './place-form.module.scss';
-import { Place, HOST } from '@/shared/api';
+import { Place, API_HOST } from '@/shared/api';
 import { getAbbr} from '@/shared/lib/string';
 
 export interface PlaceFormProps {
@@ -53,25 +53,14 @@ export function PlaceForm({data, confirmDelete}: PlaceFormProps) {
 
   return (
     <form action={action} className={styles.root}>
-      {data ? (
-        data.image_url ? (
-          <Image
-            src={`/api/http-proxy?url=${HOST}/${data.image_url}`}
-            width={80}
-            height={80}
-            alt={data.name}
-            className={styles.image}
-          />) : (
-          <div className={styles.imagePlaceholder}>
-            {getAbbr(data.name)}
-          </div>
-        )
-      ) : (
-        <UploadImageInput
-          name="pic_file"
-          disabled={pending}
-        />
-      )}
+      <UploadImageInput
+        name="pic_file"
+        disabled={pending}
+        previewInit={data?.image_url ? {
+          src: `/api/http-proxy?url=${API_HOST}/${data.image_url}`,
+          alt: data.name
+        } : undefined}
+      />
       <div className={styles.inputs}>
         <TextInput
           name="name"
@@ -132,18 +121,20 @@ export function PlaceForm({data, confirmDelete}: PlaceFormProps) {
         >
           {data ? 'Сохранить изменения' : 'Добавить'}
         </Button>
-        <TextButton
-          className={styles.button}
-          type="negative"
-          size="m"
-          disabled={pending}
-          style={{ alignSelf: 'center' }}
-          onClick={() => setIsDeleteModal(true)}
-        >
-          Удалить заведение
-        </TextButton>
+        {data && (
+          <TextButton
+            className={styles.button}
+            type="negative"
+            size="m"
+            disabled={pending}
+            style={{ alignSelf: 'center' }}
+            onClick={() => setIsDeleteModal(true)}
+          >
+            Удалить заведение
+          </TextButton>
+        )}
       </div>
-      {isDeleteModal && (
+      {data && isDeleteModal && (
         <Modal onClose={() => setIsDeleteModal(false)}>
           <div className={styles.deleteModal}>
             <div className={styles.deleteModalInfo}>

@@ -3,7 +3,7 @@ export const validReviewServerQueryKeys = ['place_id', 'period_from', 'period_to
 
 export function normalizeReviewQuery(query: Dictionary<any>): Dictionary<string> {
   return Object.entries(query).reduce<Dictionary<string>>((acc, [key, value]) => {
-    if (validReviewServerQueryKeys.includes(key) && value != null && value !== '') {
+    if (value != null && value !== '') {
       acc[key] = value;
     }
 

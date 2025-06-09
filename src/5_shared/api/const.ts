@@ -1,1 +1,1 @@
-export const HOST = 'http://194.226.121.220:8020';
+export const API_HOST = process.env.NEXT_PUBLIC_API_HOST;

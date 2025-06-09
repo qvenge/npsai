@@ -1,9 +1,11 @@
 'use client';
 
+import Image from 'next/image';
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 
 import { Icon, ButtonContainer } from '@/shared/ui';
+import { API_HOST } from '@/shared/api';
 import { CameraRegular } from '@/shared/ds/icons';
 
 import styles from './upload-image-input.module.scss';
@@ -11,15 +13,21 @@ import styles from './upload-image-input.module.scss';
 type InptyProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'accept' | 'ref'>
 
 export interface UploadImageInputProps extends InptyProps {
+  previewInit?: {
+    src: string;
+    alt: string;
+  }
 }
 
 export function UploadImageInput({
   className,
+  previewInit,
   ...inputProps
 }: UploadImageInputProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const [showPreviewSrc, setShowPreviewSrc] = useState(previewInit != null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -46,11 +54,12 @@ export function UploadImageInput({
       const reader = new FileReader();
       reader.onloadend = () => setPreview(reader.result as string);
       reader.readAsDataURL(file); // Превращает файл в base64 для предпросмотра
+      setShowPreviewSrc(false);
     }
   };
 
   const handlePreviewClick = () => {
-    if (preview != null) {
+    if (preview != null || showPreviewSrc) {
       setIsMenuOpen(!isMenuOpen);
     } else {
       handleEditClick();
@@ -64,6 +73,7 @@ export function UploadImageInput({
   const handleRemoveClick = () => {
     setIsMenuOpen(false);
     setPreview(null);
+    setShowPreviewSrc(false);
 
     if (fileInputRef.current) {
       // @ts-ignore - удобный способ очистить инпут
@@ -90,7 +100,16 @@ export function UploadImageInput({
         onClick={handlePreviewClick}
       >
         <div className={styles.preview}>
-          {preview ? (
+          {showPreviewSrc && previewInit ? (
+            <Image
+              src={previewInit.src}
+              width={80}
+              height={80}
+              alt={previewInit.alt}
+              className={styles.previewImg}
+            />
+          ) : (
+            preview ? (
               <img
                 className={styles.previewImg}
                 src={preview}
@@ -104,7 +123,7 @@ export function UploadImageInput({
                 height={36}
               />
             )
-          }
+          )}
         </div>
       </ButtonContainer>
       {isMenuOpen && <div className={styles.menu}>

@@ -6,7 +6,6 @@ import { Icon } from '@/shared/ui/icon';
 import { CaretDownFill, CaretUpFill } from '@/shared/ds/icons';
 
 import styles from './select.module.scss';
-import { flushSync } from 'react-dom';
 
 interface Option {
   label: React.ReactNode;
@@ -130,7 +129,6 @@ export function Select({
               <option
                 key={i}
                 defaultValue={opt.value}
-                selected={opt.value === value}
               >
                 {opt.value}
               </option>

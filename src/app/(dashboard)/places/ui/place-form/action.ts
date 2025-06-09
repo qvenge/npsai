@@ -90,30 +90,49 @@ export async function addPlaceAction(state: FormState, formData: FormData) {
 
 export async function editPlaceAction(placeId: string | number, state: FormState, formData: FormData) {
   const session = await auth();
+  const reqs = [];
 
   const validatedFields = EditPlaceFormSchema.safeParse({
-    pic_file: formData.get('pic_file'),
     name: formData.get('name'),
     ptype: formData.get('ptype'),
     notification_recipient: formData.get('notification_recipient'),
     notification_enable: formData.get('notification_enable') === 'on',
   });
 
-  // If any form fields are invalid, return early
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
     }
   }
 
-  const res = await requestApi(`/organization/update_place?place_id=${placeId}`, {
-    method: 'POST',
-    body: validatedFields.data,
-    accessToken: session?.access_token
-  });
+  if (formData.get('pic_file') != null) {
+    const fileFormData = new FormData();
+    fileFormData.append('pic_file', formData.get('pic_file') as File);
+    fileFormData.append('place_id', placeId.toString());
 
-  if (res.status < 200 || res.status >= 300) {
-    throw new Error(res.statusText);
+    reqs.push(
+      requestApi(`/organization/set_place_picture?place_id=${placeId}`, {
+        method: 'PUT',
+        body: fileFormData,
+        accessToken: session?.access_token
+      })
+    );
+  }
+
+  reqs.push(
+    requestApi(`/organization/update_place?place_id=${placeId}`, {
+      method: 'POST',
+      body: validatedFields.data,
+      accessToken: session?.access_token
+    })
+  );
+
+  const resps = await Promise.all(reqs);
+  
+  for (let resp of resps) {
+    if (resp.status < 200 || resp.status >= 300) {
+      throw new Error(resp.statusText);
+    }
   }
 
   return {

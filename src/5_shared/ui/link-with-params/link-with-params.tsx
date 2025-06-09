@@ -11,9 +11,10 @@ export interface LinkWithParamsProps extends LinkProps {
 
 export function LinkWithParams({ href, params, ...props }: LinkWithParamsProps) {
   const searchParams = useSearchParams();
+  const query = {...Object.fromEntries(searchParams), ...params};
 
   return <Link href={{
     pathname: typeof href === 'string' ? href : href.pathname,
-    query: {...Object.fromEntries(searchParams), ...params}
+    query
   }} {...props} />;
 }

@@ -12,9 +12,10 @@ import styles from './feedback-modal.module.scss';
 interface AllReviewsModalProps {
   title: string;
   categories: ReviewSummaryCategory[];
+  reviewType: string;
 }
 
-export function AllReviewsModal({ title, categories }: AllReviewsModalProps) {
+export function AllReviewsModal({ title, categories, reviewType }: AllReviewsModalProps) {
   const [searchParams] = useSpecificQuery(['place_id', 'period_from', 'period_to']);
   const listRef = useRef(null);
   const [activeCategory, setActiveCategory] = useState<string>(categories.length > 0 ? categories[0].name : '');
@@ -27,7 +28,9 @@ export function AllReviewsModal({ title, categories }: AllReviewsModalProps) {
     ...searchParams,
     order_by: 'date',
     size: 10,
-    descending: false
+    descending: false,
+    review_type_filter: reviewType,
+    category_filter: activeCategory ? `${reviewType === 'negative' ? 'критика' : 'похвала'}:${activeCategory}` : ''
   };
 
   const options = infiniteQueryOptions<any>({

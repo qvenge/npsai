@@ -3,7 +3,7 @@
 import styles from './error.module.scss';
 import { Button } from '@/shared/ui';
 
-export default async function ErrorBoundary({
+export default function ErrorBoundary({
   error,
   reset,
 }: {

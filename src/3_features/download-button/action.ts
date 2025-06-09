@@ -2,6 +2,7 @@
 
 import { requestApi } from '@/shared/api';
 import { auth } from '@/auth';
+
 export async function prepareDownloadAction(place_id: string) {
   const session = await auth();
 

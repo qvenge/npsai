@@ -1,0 +1,1 @@
+export { ClientErrorBoundary } from './client-error-boundary';

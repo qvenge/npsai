@@ -64,12 +64,11 @@ export function PlaceSelect({places}: PlaceSelectProps) {
 
   return (
     <div className={styles.root}>
-      <select style={{ display: 'none' }}>
+      <select style={{ display: 'none' }} defaultValue={selectedPlaceId ?? ''} onChange={() => {}}>
         {places && places.map((place) => (
           <option
             key={place.id}
             defaultValue={place.id}
-            selected={place.id === selectedPlaceId}
           >
             {place.name}
           </option>

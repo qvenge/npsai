@@ -14,6 +14,7 @@ import styles from './feedback-block.module.scss';
 
 export interface FeedbackBlockProps extends React.HTMLAttributes<HTMLDivElement> {
   data: {
+    name: string;
     title: string;
     // @ts-ignore
     icon: any;
@@ -51,7 +52,7 @@ export function FeedbackBlock({ data, className }: FeedbackBlockProps) {
         {isModalOpen &&
           <Modal onClose={() => setModalOpen(false)}>
             <Suspense>
-              <AllReviewsModal categories={data.list} title={data.title} />
+              <AllReviewsModal categories={data.list} title={data.title} reviewType={data.name} />
             </Suspense>
           </Modal>
         }

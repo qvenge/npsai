@@ -11,7 +11,9 @@ export const ReviewListQuery = z.object({
   order_by: z.string().optional(),
   descending: z.boolean().optional(),
   page: z.number().optional(),
-  size: z.number().optional()
+  size: z.number().optional(),
+  review_type_filter: z.string().optional(),
+  category_filter: z.string().optional()
 });
 
 // "id": 1,
