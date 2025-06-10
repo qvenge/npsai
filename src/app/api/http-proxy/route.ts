@@ -7,7 +7,6 @@ export async function GET(request: NextRequest) {
 
   const response = await fetch(url);
   const buffer = await response.arrayBuffer();
-  console.log('Content-Type', response.headers.get('content-type'));
 
   return new NextResponse(buffer, {
     headers: {

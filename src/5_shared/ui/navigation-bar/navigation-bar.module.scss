@@ -47,12 +47,16 @@
   height: 20px;
 }
 
+.navItem:not(.navItemActive):hover  .navItemContent {
+  background: ds.color('background/secondary');
+}
+
 .navItemActive {
   // color: var(--text-accent, #2584F9);
   // background: var(--background-accent, #ECF5FF);
 
   & .navItemContent {
-    background: var(--background-accent, #ECF5FF);
-    color: var(--text-accent, #2584F9);
+    background: ds.color('background/accent');
+    color: ds.color('text/accent');
   }
 }

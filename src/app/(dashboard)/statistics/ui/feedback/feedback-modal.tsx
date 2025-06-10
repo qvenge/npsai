@@ -29,8 +29,7 @@ export function AllReviewsModal({ title, categories, reviewType }: AllReviewsMod
     order_by: 'date',
     size: 10,
     descending: false,
-    review_type_filter: reviewType,
-    category_filter: activeCategory ? `${reviewType === 'negative' ? 'критика' : 'похвала'}:${activeCategory}` : ''
+    category_filter: `${reviewType}:${activeCategory}`
   };
 
   const options = infiniteQueryOptions<any>({

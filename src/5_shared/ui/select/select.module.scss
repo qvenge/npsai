@@ -43,9 +43,21 @@
   white-space: nowrap;
 }
 
-.open .selectedContentWrapper,
-.focused .selectedContentWrapper {
-  border: 1px solid ds.color('border/accent');
+.root:not(.disabled):not(.readOnly):not(.error):not(.open):not(:focus):hover {
+  & .selectedContentWrapper {
+    border: 1px solid ds.color('border/secondary');
+  }
+}
+.root:focus,
+.root:focus-visible,
+.root:focus-within,
+.open {
+  border: none;
+  outline: none;
+
+  & .selectedContentWrapper {
+    border: 1px solid ds.color('border/accent');
+  }
 }
 
 .dropdown {
@@ -75,6 +87,7 @@
   padding: 4px 8px;
   border-radius: ds.number('radius/S');
 
+  &Highlighted,
   &:hover {
     background: ds.color('background/secondary');
   }

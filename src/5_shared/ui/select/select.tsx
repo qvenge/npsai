@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
-import { Icon } from '@/shared/ui/icon'; 
+import { Icon } from '@/shared/ui'; 
 import { CaretDownFill, CaretUpFill } from '@/shared/ds/icons';
 
 import styles from './select.module.scss';
@@ -38,33 +38,87 @@ export function Select({
 }: SelectProps) {
   const [defaultValue, setDefaultValue] = useState(selectProps.defaultValue);
   const [isOpen, setIsOpen] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const selectRef = useRef<HTMLSelectElement>(null);
-
   const value = inputValue ?? defaultValue;
+  const [highlighted, setHighlighted] = useState(value);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleSelectOption = (newValue: any) => {
+    if (inputValue == null) {
+      setDefaultValue(newValue);
+    }
+
+    onChange?.(newValue);
+    setIsOpen(false);
+  };
 
   useEffect(() => {
-    if (!selectRef.current) {
+    if (isOpen) {
       return;
     }
 
-    const onFocus = () => setIsFocused(true);
-    const onBlur = () => setIsFocused(false);
+    function handleSpaceDown(event: KeyboardEvent) {
+      if (document.activeElement === ref.current && event.code === 'Space') {
+        setIsOpen(true);
+      }
+    };
 
-    selectRef.current.addEventListener('focus', onFocus);
-    selectRef.current.addEventListener('blur', onBlur);
+    document.addEventListener('keydown', handleSpaceDown);
 
     return () => {
-      selectRef.current?.removeEventListener('focus', onFocus);
-      selectRef.current?.removeEventListener('blur', onBlur);
+      document.removeEventListener('keydown', handleSpaceDown);
     };
-  }, [selectRef.current])
+  }, [isOpen, document.activeElement, ref.current]);
 
-  const toggleOpen = () => {
-    selectRef.current?.focus();
-    setIsOpen(!isOpen);
-  };
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    function handleKeydown(event: KeyboardEvent) {
+      switch (event.code) {
+        case 'Escape':
+          setIsOpen(false);
+          break;
+        case 'ArrowDown': {
+          const index = options.findIndex((opt) => opt.value === highlighted);
+
+          if (index < options.length - 1) {
+            setHighlighted(options[index + 1].value);
+          } else {
+            setHighlighted(options[0].value);
+          }
+
+          break;
+        }
+        case 'ArrowUp': {
+          const index = options.findIndex((opt) => opt.value === highlighted);
+
+          if (index > 0) {
+            setHighlighted(options[index - 1].value);
+          } else {
+            setHighlighted(options[options.length - 1].value);
+          }
+
+          break;
+        }
+        case 'Space':
+        case 'Enter': {
+          handleSelectOption(highlighted);
+          break;
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeydown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeydown);
+    };
+  }, [isOpen, highlighted]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -76,8 +130,8 @@ export function Select({
         return;
       }
 
-      selectRef.current?.blur();
       setIsOpen(false);
+      ref.current?.focus();
     };
 
     document.addEventListener('click', handleClickOutside);
@@ -87,46 +141,37 @@ export function Select({
     };
   }, [isOpen]);
 
-  const handleClickOption = (newValue: string) => {
-    if (inputValue == null) {
-      setDefaultValue(newValue);
-    }
-
-    onChange?.(newValue);
-    setIsOpen(false);
-  };
-
   const selectedOption = options.find((opt) => opt.value === value);
 
   return (
-    <div className={clsx(
+    <div ref={ref} tabIndex={0} className={clsx(
       className,
       styles.root,
       {
         [styles.disabled]: selectProps.disabled,
         [styles.error]: errorMessage,
         [styles.open]: isOpen,
-        [styles.focused]: isFocused,
         [styles.notSelected]: selectedOption == null
       }
     )}>
       <label className={styles.wrapper}>
         {label && <div className={styles.label}>{label}</div>}
         <div
-          ref={ref}
           className={styles.select}
           style={style}
         >
           <select
             className={styles.selectItself}
-            ref={selectRef}
+            tabIndex={-1}
             value={value}
             onChange={() => {}}
+            hidden
             {...selectProps}
           >
-            <option value=""></option>
+            <option tabIndex={-1} value=""></option>
             {options.map((opt, i) => (
               <option
+                tabIndex={-1}
                 key={i}
                 defaultValue={opt.value}
               >
@@ -156,8 +201,12 @@ export function Select({
             {options.map((opt, i) => (
               <div
                 key={i}
-                className={clsx(styles.option, {[styles.optionSelected]: opt.value == value})}
-                onClick={() => handleClickOption(opt.value)}
+                className={clsx(
+                  styles.option,
+                  opt.value === value && styles.optionSelected,
+                  (opt.value === highlighted && opt.value !== value) && styles.optionHighlighted
+                )}
+                onClick={() => handleSelectOption(opt.value)}
               >
                 <div className={styles.optionContent}>
                   {opt.label}

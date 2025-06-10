@@ -7,15 +7,13 @@ import { FeedbackBlock } from './feedback-block';
 import styles from './feedback.module.scss';
 
 const labels = {
-  positive: 'Положительные',
-  neutral: 'Нейтральные',
-  negative: 'Отрицательные',
+  'похвала': 'Положительные',
+  'критика': 'Отрицательные',
 };
 
 const icons = {
-  positive: ThumbsUpBold,
-  neutral: SmileyMehBold,
-  negative: ThumbsDownBold,
+  'похвала': ThumbsUpBold,
+  'критика': ThumbsDownBold,
 }
 
 export interface FeedbackProps {
@@ -23,7 +21,7 @@ export interface FeedbackProps {
 }
 
 export function Feedback({data}: FeedbackProps) {
-  const items = Object.entries(data.summary).map(([key, value]) => ({
+  const items = Object.entries(data.summary).filter(([key]) => key in labels).map(([key, value]) => ({
     ...value,
     name: key,
     // @ts-ignore
