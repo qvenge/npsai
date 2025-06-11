@@ -71,7 +71,7 @@ export function Select({
     return () => {
       document.removeEventListener('keydown', handleSpaceDown);
     };
-  }, [isOpen, document.activeElement, ref.current]);
+  }, [isOpen, globalThis.document?.activeElement, ref.current]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -131,7 +131,6 @@ export function Select({
       }
 
       setIsOpen(false);
-      ref.current?.focus();
     };
 
     document.addEventListener('click', handleClickOutside);

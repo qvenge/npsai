@@ -69,3 +69,5 @@ export { default as XCircleFill } from '@/shared/ds/icons/20/x-circle_fill.svg';
 
 export { default as CircleNotchBold } from '@/shared/ds/icons/20/circle-notch_bold.svg';
 export { default as ArrowLineDownBold } from '@/shared/ds/icons/20/arrow-line-down_bold.svg';
+
+export { default as QuestionFill } from '@/shared/ds/icons/20/question_fill.svg';

@@ -17,4 +17,5 @@ export { LinkWithParams, type LinkWithParamsProps } from './link-with-params';
 export { VirtualScroll } from './virtual-scroll';
 export { Dropdown } from './dropdown';
 export { Loader } from './loader';
+export { SupportButton } from './support-button';
 export * from './icon-button';
