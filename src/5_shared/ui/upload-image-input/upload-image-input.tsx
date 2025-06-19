@@ -91,7 +91,7 @@ export function UploadImageInput({
         {...inputProps}
         className={styles.input}
         type="file"
-        accept="image/*"
+        accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/avif,image/heic"
         ref={fileInputRef}
         onChange={handleFileChange}
       />

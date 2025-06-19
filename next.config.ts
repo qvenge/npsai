@@ -1,8 +1,14 @@
 import type { NextConfig } from 'next';
 import path from 'node:path';
-import { API_HOST } from '@/shared/api/const';
+import { API_HOST } from './src/5_shared/api/const';
 
 const nextConfig: NextConfig = {
+  webpack: (config) => {
+    config.resolve.alias['@/features'] = path.resolve(__dirname, 'src/3_features');
+    config.resolve.alias['@/shared'] = path.resolve(__dirname, 'src/5_shared');
+    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
+    return config;
+  },
   sassOptions: {
     additionalData: `
       @use "${path.resolve(__dirname, 'src/5_shared/ds')}" as ds;
@@ -11,16 +17,10 @@ const nextConfig: NextConfig = {
   },
   images: {
     dangerouslyAllowSVG: true,
+    contentDispositionType: 'inline',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-      {
-        protocol: 'http',
-        hostname: '**',
-      },
+      new URL(`${API_HOST}/static/**`),
     ],
   },
   eslint: {
